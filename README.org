@@ -1,0 +1,58 @@
+* About
+In this project, we aim to create a differentiable ML pipeline for Camera.
+
+Input RGB Image
+    ↓
+White Balance (learnable gain per channel)
+    ↓
+Gaussian Blur (simulating lens blur)
+    ↓
+Simple Tone Mapping (nonlinear curve or 1x1 Conv)
+    ↓
+Neural Network Head (e.g., regression/classification/super-res)
+** AAA
+High-Res Image (128x128)
+    ↓
+↓ Downsample (simulate low-res)
+↓ White Balance (fixed RGB gain)
+↓ Gaussian Blur (OpenCV)
+↓ Tone Mapping (gamma correction)
+    ↓
+↑ Upsample (back to 128x128 using bicubic)
+↓
+Compare with original HR using MSE loss
+
+High-Res Image (128x128)
+↓
+↓ Downsample (64x64)
+↓ White Balance (fixed)
+↓ Gaussian Blur (fixed)
+↓ Tone Mapping (fixed)
+↓
+→ Feed into a trainable upsampler neural network (outputs 128x128)
+↓
+Compare with original HR using MSE loss
+
+ESErgen
+
+
+** Pipeline Components (Traditional)
+
+    Input: High-res images
+
+    Degrade: Downscale (simulate low-res)
+
+    White balance: Multiply RGB by learnable gains
+
+    Blur: Apply Gaussian blur
+
+    Tone mapping: Simple gamma curve
+
+    Upscale: Bicubic (baseline)
+
+    Loss: MSE between predicted HR and ground-truth HR
+
+* Result
+SR Model - Avg PSNR: 22.02 dB, Avg SSIM: 0.7049
+SR Model - Avg PSNR: 21.76 dB, Avg SSIM: 0.6871
+
