@@ -51,8 +51,22 @@ ESErgen
     Upscale: Bicubic (baseline)
 
     Loss: MSE between predicted HR and ground-truth HR
+** Initializing Pipeline (SuperRes_pipeline_v1, differentiable)
+WhiteBalance = (1.2, 1.0, 0.9): Emulates cool/blue daylight white balancing, often found in ISP setups.
 
+GaussianBlur = sigma=1.5, kernel=5: A typical range for simulating lens softness or slight focus blur.
+
+Gamma = 2.2: Standard in sRGB color space tone mapping.
 * Result
 SR Model - Avg PSNR: 22.02 dB, Avg SSIM: 0.7049
 SR Model - Avg PSNR: 21.76 dB, Avg SSIM: 0.6871
 
+Let's implement the following filters:
+
+Sharpening filter
+Edge detection (Sobel)
+Median filter (for noise reduction)
+Contrast enhancement
+JPEG compression artifacts removal
+Bilateral filter
+Unsharp masking
